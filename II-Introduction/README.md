@@ -12,7 +12,7 @@ OBS: The Runtime is a physical grouping
 
 # Primitive Types
 
-![image.png](./Res/Imgs/image.png)
+![image.png](./src/Imgs/image.png)
 
 
 OBS: The double is preferred to the float type because is more precise.
@@ -22,6 +22,19 @@ OBS: The double is preferred to the float type because is more precise.
 # F Strings
 
 - **`%s`** ⇒ for strings
+    
+    ```java
+        System.out.printf("%20s", "ola formatado".toUpperCase());
+        System.out.printf("   %-20s", "oi aqui");
+        System.out.printf("Oi%n");
+
+        /*
+        * right to left format: positive numbers
+        * left to right format: negative numbers
+        */
+
+        // Output:       OLA FORMATADO   oi aqui             Oi
+    ```
 - **`%d`** ⇒ for int
 - **`%f`** ⇒ for float
 - `%s` - String

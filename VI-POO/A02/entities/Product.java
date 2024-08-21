@@ -13,7 +13,8 @@ public class Product {
     }
 
     public String getTotalValue() {
-        return String.format("\033[1;32m$%.2f\033[m", price * quantity);
+        return String.format("\033[32m$%.2f\033[m",
+                                            price * quantity);
     }
 
     public void addProducts(int quantity_to_add) {
@@ -24,7 +25,8 @@ public class Product {
         }
 
         this.quantity += quantity_to_add;
-        System.out.printf("%dx added to %s.\n", quantity_to_add, this.name);
+        System.out.printf("%dx added to %s.\n",
+                          quantity_to_add, this.name);
     }
 
     public void removeProducts(int quantity_to_remove) {
@@ -36,12 +38,18 @@ public class Product {
 
         if (this.quantity - quantity_to_remove < 0) {
             System.out.printf("Not enough products to remove. Only have " +
-            "%d products.\n", this.quantity);
+            "%d products in stock.\n", this.quantity);
             return;
         }
 
         this.quantity -= quantity_to_remove;
 
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %s\nPrice: %s\nIn Stock: %d\n",
+                                    this.name, getTotalValue(), this.quantity);
     }
 
 

@@ -52,6 +52,9 @@ OBS: Std Values
 
 1. Strings ⇒ null;
 2. Int & Double ⇒ 0;
+3. Boolean ⇒ false;
+4. Char ⇒ 0;
+5. Object ⇒ null;
 
 # Access Modifiers
 

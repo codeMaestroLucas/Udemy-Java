@@ -5,9 +5,7 @@
 Reference Types: Classes, arrays.
 
 - Run time objects are stored in the Heap memory
-    
-    *Store the memory address for the real object in the Stack memory.*
-    
+  _Store the memory address for the real object in the Stack memory._
 
 ![img](./src/imgs/reference.png)
 
@@ -26,7 +24,6 @@ Value Types: primitive types.
 # Boxing
 
 Process of converting a value type object to a compatible reference type.
-
 
 ![img](./src/imgs/boxing.png)
 
@@ -122,4 +119,76 @@ System.out.println("Last Postion of the number '5': " + number.lastIndexOf(5));
 
 ```
 
-### Stream
+### Stream in Lists
+
+1. Parallel Stream: parallel computation;
+
+    ```Java
+    List<Integer> oddNumbers = numbers.parallelStream()
+                                .filter(x -> x % 2 != 0)
+                                .collect(Collectors.toList());
+    ```
+
+2. Map: change the value of the stream;
+
+    ```Java
+    List<Integer> doubleNumbers = numbers.stream()
+                                    .map(x -> x * 2)
+                                    .collect(Collectors.toList());
+    ```
+
+3. Filter: make an if filter between the values of the stream and return the
+   `true` values;
+
+    ```Java
+    List<Integer> divisibleBy5and8 = numbers.stream()
+                                    .map(x -> x * 10)
+                                    .filter(x -> x % 5 == 0 && x % 8 == 0)
+                                    .collect(Collectors.toList());
+    ```
+
+4. Find First: find the first value of the stream that satisfies the condition;
+
+    ```Java
+    Optional<Integer> firstEvenNumber = numbers.stream()  // Have to be Optional if the number doesn't exist
+                                .filter(x -> x % 2 ==0)
+                                .findFirst();
+
+    System.out.println("First even number: " + firstEvenNumber.get()); // To get the actual value
+    ```
+
+5. Reduce: reduce the values of a strem to one variable;
+
+    ```Java
+    Integer sum = numbers.stream().reduce(1000, Integer::sum);  // Integer has a SUM funct
+                                        // Start value
+    System.out.println("Total Sum: " + sum);
+
+    List<String> hey = new ArrayList<>(List.of("Hello", "World", "Java"));
+    String helloString = hey.stream()
+            .reduce("Concatenated String value: ", (a, b) -> a + "---" + b);
+                                // Start value
+
+    System.out.println(helloString);
+    ```
+
+6. Sorted: sort the values on the stream;
+
+    ```Java
+    List<String> sortedString = hey.stream()
+                                .sorted()          // Sort the list
+                                .distinct()        // Only the distinct values
+                                .limit(10)         // On max 10 values
+                                .collect(Collectors.toList()); // Collect
+
+    ```
+
+7. Peek: used to execute one function inside the stream. Usefull to debug.
+
+    ```Java
+    List<String> toUpper = hey.stream()
+                            .filter(x -> x.length() > 3)
+                            .peek(x ->  System.out.println("Word: " + x)) // Usefull when u want to debug
+                            .map(String::toUpperCase)
+                            .collect(Collectors.toList());
+    ```

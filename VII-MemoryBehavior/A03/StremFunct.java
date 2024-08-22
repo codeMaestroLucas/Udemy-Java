@@ -68,7 +68,7 @@ public class StremFunct {
     List<String> sortedString = hey.stream()
                 .sorted()          // Sort the list
                 .distinct()        // Only the distinct values
-                .limit(10) // On max 10 values
+                .limit(10)         // On max 10 values
                 .collect(Collectors.toList());
 
     System.out.println(sortedString);
@@ -79,6 +79,7 @@ public class StremFunct {
                           .peek(x ->  System.out.println("Word: " + x)) // Usefull when u want to debug
                           .map(String::toUpperCase)
                           .collect(Collectors.toList());
+                          
     System.out.println(toUpper);
     System.out.println(separator);
 

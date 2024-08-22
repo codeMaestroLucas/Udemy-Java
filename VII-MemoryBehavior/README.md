@@ -1,3 +1,15 @@
+# Index
+
+ - [Reference Types](#reference-types);
+ - [Boxing](#boxing);
+ - [UnBoxing](#unboxing);
+ - [Wrapper Classes](#wrapper-classes);
+ - [Lists](#lists);
+    - [Stream on lists](#stream-on-lists);
+ - [Matrices](#matrices);
+
+---
+
 # Reference Types
 
 **Pointer** to the actual value stored in the memory.
@@ -119,7 +131,7 @@ System.out.println("Last Postion of the number '5': " + number.lastIndexOf(5));
 
 ```
 
-### Stream in Lists
+### Stream on Lists
 
 1. Parallel Stream: parallel computation;
 
@@ -192,3 +204,49 @@ System.out.println("Last Postion of the number '5': " + number.lastIndexOf(5));
                             .map(String::toUpperCase)
                             .collect(Collectors.toList());
     ```
+
+
+---
+
+# Matrices
+![img](./src/imgs/matrix.png)
+
+<aside>
+🔥 The Matrix is a Array of Arrays. Each element in the first array - `matrix[i]`
+ - is a pointer, reference to the other array.
+
+</aside>
+
+## Operations in Matrices
+
+### Create
+
+```java
+int[][] mat = new int[n][n]; /* NxN Matrix 
+```
+
+### Reading Elements
+
+```java
+for (int i = 0; i < n; i++) { /* Loop for Rows */
+  for (int j = 0; j < n; j++) { /* Loop for Columns */
+      mat[i][j] = sc.nextInt();
+  }
+}
+
+System.out.print(mat[1][3]); /* Specific element */
+```
+
+### `length` Property
+
+Replaces the number of rows in a matrix
+
+```java
+mat.lengt
+```
+
+The number of columns can be expressed by:
+
+```java
+mat[i].length /* Calculating the number of elements within a row */
+```

@@ -13,7 +13,7 @@ public class Main {
         
         Scanner sc = new Scanner(System.in);
         
-        // Operations with data]
+        // Operations with data
         LocalDate d01 = LocalDate.parse("2024-08-23");
 
         LocalDate sumOperation = d01.plusDays(30);

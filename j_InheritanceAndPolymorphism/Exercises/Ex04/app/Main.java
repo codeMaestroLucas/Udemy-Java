@@ -1,7 +1,5 @@
 package j_InheritanceAndPolymorphism.Exercises.Ex04.app;
 
-import static java.lang.StringTemplate.*;
-
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -51,10 +49,15 @@ public class Main {
             taxPayers.add(p);
         }
 
+
+        Double sum = 0.0;
         System.out.println("\nTAX PAID");
         for (Person person : taxPayers) {
             System.out.println(person);
+            sum += person.getTax();
         }
+
+        System.out.printf("Total Tax: $%,.2f\n", sum);
         
         sc.close();
     }

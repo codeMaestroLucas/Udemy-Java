@@ -102,3 +102,37 @@ Specifies a different behavior for a subclass when implementing a method from th
 # Polymorphism
 
 Different behave for different methods or classes.
+
+```java
+public class SavingsAccount **extends** Account{
+```
+
+---
+
+# Abstract
+
+- Classes: the abstract class won’t be instantiated, just the subclasses.
+    
+    They’re used just to set methods and att in common in classes.
+    
+    ```java
+    public **abstract** class Account {
+    ```
+    
+- Methods: used when the class has an generics type of implementation of that method.
+    
+    <aside>
+    📌 If the class contains at least one abstract method, then the class is abstract as well.
+    
+    </aside>
+    
+    ```java
+    public abstract class Shape {
+    
+        public abstract Double area();
+        // Abstract methods doesn't need a body
+    }
+    ```
+    
+
+**OBS:** In UML the abstract have their name in *italic*.

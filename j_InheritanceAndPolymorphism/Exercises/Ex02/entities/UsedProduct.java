@@ -9,7 +9,7 @@ public class UsedProduct extends Product {
 
     protected Date manufactureDate;
 
-    public UsedProduct(String name, Double price, Double customsFee, Date manufactureDate) {
+    public UsedProduct(String name, Double price, Date manufactureDate) {
         super(name, price);
         this.manufactureDate = manufactureDate;
     }
@@ -17,7 +17,6 @@ public class UsedProduct extends Product {
     @Override
     public String priceTag() {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        // Convert Date to LocalDate
         LocalDate localDate = this.manufactureDate.toInstant()
                     .atZone(ZoneId.systemDefault()).toLocalDate();
                     

@@ -1,7 +1,7 @@
 package l_chessProject.project.models.entities.boardGame;
 
 
-public class Piece {
+public abstract class Piece {
     
     private Board board;
     protected Position position;
@@ -25,10 +25,27 @@ public class Piece {
 
 
 
-    public Piece[][] possibleMoves() {}
+    public abstract Boolean[][] possibleMoves();
 
-    public Boolean possibleMove(Position posToCheck) {}
+    public Boolean possibleMove(Position posToCheck) {
+        return possibleMoves()[posToCheck.getRow()][posToCheck.getColumn()];
+
+    }
 
 
-    public Boolean isThereAnyPossibleMove() {}
+    public Boolean isThereAnyPossibleMove() {
+        Boolean[][] matrix = possibleMoves();
+
+        for (int i = 0 ; i < matrix.length ; i++) {
+            for (int j = 0 ; j < matrix[i].length ; j++) {
+                if (matrix[i][j]) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
+
+    }
 }

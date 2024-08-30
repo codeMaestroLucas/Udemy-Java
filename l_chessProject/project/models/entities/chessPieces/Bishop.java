@@ -5,16 +5,18 @@ import l_chessProject.project.models.entities.boardGame.Position;
 import l_chessProject.project.models.entities.chess.ChessPiece;
 import l_chessProject.project.models.enums.Color;
 
-public class Rook extends ChessPiece {
+
+public class Bishop extends ChessPiece {
+
     
-    public Rook(Board board, Color color) {
+    public Bishop(Board board, Color color) {
         super(board, color);
     }
 
 
     @Override
     public String toString() {
-        return "R";
+        return "B";
     }
 
 
@@ -23,22 +25,22 @@ public class Rook extends ChessPiece {
         boolean[][] matrix = new boolean[getBoard().getRows()]
                                         [getBoard().getCols()];
         
-        movesUp(matrix);
-        movesDown(matrix);
-        movesLeft(matrix);
-        movesRight(matrix);
+        movesUpLeft(matrix);
+        movesDownRight(matrix);
+        movesDownLeft(matrix);
+        movesUpRight(matrix);
 
         return matrix;
     }
 
-    private boolean[][] movesUp(boolean[][] matrix) {
+    private boolean[][] movesUpLeft(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() - 1,
-                    position.getColumn());
+                    position.getColumn() - 1);
 
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) ) {
             matrix[p.getRow()][p.getColumn()] = true;
-            p.setValues(p.getRow() - 1, p.getColumn());
+            p.setValues(p.getRow() - 1, p.getColumn() -1);
         }
 
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
@@ -48,14 +50,14 @@ public class Rook extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesDown(boolean[][] matrix) {
+    private boolean[][] movesDownRight(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() + 1,
-                    position.getColumn());
+                    position.getColumn() + 1);
 
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) ) {
             matrix[p.getRow()][p.getColumn()] = true;
-            p.setValues(p.getRow() + 1, p.getColumn());
+            p.setValues(p.getRow() + 1, p.getColumn() + 1);
         }
 
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
@@ -65,14 +67,14 @@ public class Rook extends ChessPiece {
         return matrix;
     }
     
-    private boolean[][] movesLeft(boolean[][] matrix) {
+    private boolean[][] movesDownLeft(boolean[][] matrix) {
         Position p = new Position(0, 0);
-        p.setValues(position.getRow(),
+        p.setValues(position.getRow() + 1,
                     position.getColumn() - 1);
         
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
             matrix[p.getRow()][p.getColumn()] = true;
-            p.setValues(p.getRow(), p.getColumn() - 1);
+            p.setValues(p.getRow() + 1, p.getColumn() - 1);
         }
 
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
@@ -82,14 +84,14 @@ public class Rook extends ChessPiece {
         return matrix;
     }
     
-    private boolean[][] movesRight(boolean[][] matrix) {
+    private boolean[][] movesUpRight(boolean[][] matrix) {
         Position p = new Position(0, 0);
-        p.setValues(position.getRow(),
+        p.setValues(position.getRow() - 1,
                     position.getColumn() + 1);
         
         while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
             matrix[p.getRow()][p.getColumn()] = true;
-            p.setValues(p.getRow(), p.getColumn() + 1);
+            p.setValues(p.getRow() - 1, p.getColumn() + 1);
         }
 
         if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
@@ -98,5 +100,5 @@ public class Rook extends ChessPiece {
 
         return matrix;
     }
-
+    
 }

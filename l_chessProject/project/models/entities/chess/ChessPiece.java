@@ -8,6 +8,7 @@ import l_chessProject.project.models.enums.Color;
 public abstract class ChessPiece extends Piece {
     
     private Color color;
+    private int moveCount;
 
     public ChessPiece(Board board, Color color) {
         super(board);
@@ -18,10 +19,25 @@ public abstract class ChessPiece extends Piece {
         return this.color;
     }
 
+    public int getMoveCount() {
+        return this.moveCount;
+    }
 
-    protected Boolean isThereOpponentPiece(Position pos) {
+    protected boolean isThereOpponentPiece(Position pos) {
         ChessPiece p = (ChessPiece) getBoard().piece(pos);
-        return  p != null && p.getColor() != this.color;
+        return p != null && p.getColor() != this.color;
+    }
+
+    public ChessPosition getChessPosition() {
+        return ChessPosition.fromPosition(position);
+    }
+
+    protected void increaseMoveCount() {
+        this.moveCount++;
+    }
+
+    protected void decreaseMoveCount() {
+        this.moveCount--;
     }
 
 }

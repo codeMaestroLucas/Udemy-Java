@@ -33,22 +33,23 @@ public class King extends ChessPiece {
 
     @Override
     public boolean[][] possibleMoves() {
-        boolean[][] matrix = new boolean[getBoard().getRows()][getBoard().getCols()];
+        boolean[][] matrix = new boolean[getBoard().getRows()]
+                                        [getBoard().getCols()];
 
-        movesUp(matrix);
-        movesDown(matrix);
-        movesLeft(matrix);
-        movesRight(matrix);
-        movesLeftDiagUp(matrix);
-        movesRightDiagUp(matrix);
-        movesLeftDiagDown(matrix);
-        movesRightDiagDown(matrix);
+        moveUp(matrix);
+        moveDown(matrix);
+        moveLeft(matrix);
+        moveRight(matrix);
+        moveLeftDiagUp(matrix);
+        moveRightDiagUp(matrix);
+        moveLeftDiagDown(matrix);
+        moveRightDiagDown(matrix);
         castling(matrix);
 
         return matrix;
     }
 
-    private boolean[][] movesUp(boolean[][] matrix) {
+    private boolean[][] moveUp(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() - 1,
                 position.getColumn());
@@ -60,7 +61,7 @@ public class King extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesDown(boolean[][] matrix) {
+    private boolean[][] moveDown(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() + 1,
                 position.getColumn());
@@ -72,7 +73,7 @@ public class King extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesLeft(boolean[][] matrix) {
+    private boolean[][] moveLeft(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow(),
                 position.getColumn() - 1);
@@ -84,7 +85,7 @@ public class King extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesRight(boolean[][] matrix) {
+    private boolean[][] moveRight(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow(),
                 position.getColumn() + 1);
@@ -96,7 +97,7 @@ public class King extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesLeftDiagUp(boolean[][] matrix) {
+    private boolean[][] moveLeftDiagUp(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() - 1,
                 position.getColumn() - 1);
@@ -108,7 +109,7 @@ public class King extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesRightDiagUp(boolean[][] matrix) {
+    private boolean[][] moveRightDiagUp(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() - 1,
                 position.getColumn() + 1);
@@ -120,7 +121,7 @@ public class King extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesLeftDiagDown(boolean[][] matrix) {
+    private boolean[][] moveLeftDiagDown(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() + 1,
                 position.getColumn() - 1);
@@ -132,7 +133,7 @@ public class King extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesRightDiagDown(boolean[][] matrix) {
+    private boolean[][] moveRightDiagDown(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() + 1,
                 position.getColumn() + 1);

@@ -1,6 +1,5 @@
 package l_chessProject.project.models.entities.chess;
 
-
 import l_chessProject.project.models.entities.boardGame.Position;
 
 
@@ -8,7 +7,6 @@ public class ChessPosition {
     
     private char column;
     private int row;
-
 
     public ChessPosition(char column, int row) {
         if (column < 'a' || column > 'h' || row < 1 || row > 8) {

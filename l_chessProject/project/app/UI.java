@@ -1,18 +1,19 @@
 package l_chessProject.project.app;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import l_chessProject.project.models.entities.chess.ChessMatch;
 import l_chessProject.project.models.entities.chess.ChessPiece;
 import l_chessProject.project.models.entities.chess.ChessPosition;
 import l_chessProject.project.models.enums.Color;
 
-import java.util.stream.Collectors;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
 public class UI {
+
+    private static String delimiter = "\033[1;35m+\033[m" + "=".repeat(28) + "\033[1;35m+\033[m";
     
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");  // Clrears the terminal screen
@@ -28,15 +29,17 @@ public class UI {
         System.out.println();
 
         if (!m.getCheckMate()) {
+            System.out.print("Waiting for player: ");
             if (m.getCurrentPlayer() == Color.WHITE) {
-                System.out.println(STR."Waiting for player: \033[1;7m\{m.getCurrentPlayer()}\033[m");
+                System.out.println(STR."\033[1;7m\{m.getCurrentPlayer()}\033[m");
             } else {
-                System.out.println(STR."Waiting for player: \033[1;43m\{m.getCurrentPlayer()}\033[m");
+                System.out.println(STR."\033[1;43m\{m.getCurrentPlayer()}\033[m");
             }
     
             if (m.getCheck()) {
                 System.out.println("CHECK!");
             }
+
         } else {
             System.out.println("CHECKMATE!");
             System.out.println(STR."\033[1;32mWINNER: \{m.getCurrentPlayer()}\033[m");
@@ -47,7 +50,8 @@ public class UI {
     public static void printBoardGame(ChessPiece[][] piece) {
         clearScreen();
 
-        System.out.println("\n\n\033[1;35m+\033[m" + "=".repeat(28) + "\033[1;35m+\033[m");
+        System.out.println("\n");
+        System.out.println(delimiter);
         System.out.printf("|%29s\n", "|");
 
         for (int i = 0; i < piece.length ; i++) {
@@ -64,13 +68,16 @@ public class UI {
         System.out.printf("|%29s\n", "|");
 
 
-        System.out.println("\033[1;35m+\033[m" + "=".repeat(28) + "\033[1;35m+\033[m\n\n");
+        System.out.println(delimiter);
+        System.out.println("\n");
     }
     
-    public static void printBoardGame(ChessPiece[][] piece, boolean[][] possibleMoves) {
+    public static void printBoardGame(ChessPiece[][] piece,
+                                      boolean[][] possibleMoves) {
         clearScreen();
 
-        System.out.println("\n\n\033[1;35m+\033[m" + "=".repeat(28) + "\033[1;35m+\033[m");
+        System.out.println("\n");
+        System.out.println(delimiter);
         System.out.printf("|%29s\n", "|");
 
         for (int i = 0; i < piece.length ; i++) {
@@ -85,8 +92,8 @@ public class UI {
         System.out.println("|" + " ".repeat(8) + "a b c d e f g h     |");
         System.out.printf("|%29s\n", "|");
 
-
-        System.out.println("\033[1;35m+\033[m" + "=".repeat(28) + "\033[1;35m+\033[m\n\n");
+        System.out.println(delimiter);
+        System.out.println("\n");
     }
 
 
@@ -111,26 +118,35 @@ public class UI {
 
         System.out.print(" ");
 
-
     }
 
 
     public static ChessPosition readChessPosition(Scanner sc) {
-
         try {
             String s = sc.nextLine().trim().toLowerCase();
+    
+            // Correct input if it's in the format "2a" instead of "a2"
+            if (s.length() == 2 && Character.isDigit(s.charAt(0)) &&
+                Character.isLetter(s.charAt(1))) {
+                s = "" + s.charAt(1) + s.charAt(0);
+            }
+    
             char column = s.charAt(0);
             int row = Integer.parseInt(s.substring(1));
-
-            return new ChessPosition (column, row);
-
+    
+            if (column < 'a' || column > 'h' || row < 1 || row > 8) {
+                throw new InputMismatchException("Error reading Chess Position."
+                + "Valid values are a1 to h8.");
+            }
+    
+            return new ChessPosition(column, row);
+    
         } catch (Exception e) {
-            throw new InputMismatchException(
-                "Error reading Chess Position. Valid values are a1 to h8.");
+            throw new InputMismatchException("Error reading Chess Position."
+            + "Valid values are a1 to h8.");
         }
-
     }
-
+    
 
     public static void raiseException(Scanner sc, Exception e) {
         System.out.println("\033[31m" + e.getMessage() + "\033[m" );
@@ -140,8 +156,10 @@ public class UI {
 
 
     private static void printCapturedPieces(List<ChessPiece> captured) {
-        List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
-        List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
+        List<ChessPiece> white = captured.stream().filter(
+                x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
+        List<ChessPiece> black = captured.stream().filter(
+                x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
         
         System.out.println(STR."""
                 Captured pieces:

@@ -22,7 +22,6 @@ public class Knight extends ChessPiece {
     }
 
 
-
     @Override
     public boolean[][] possibleMoves() {
         boolean[][] matrix = new boolean[getBoard().getRows()]
@@ -60,14 +59,14 @@ public class Knight extends ChessPiece {
         p.setValues(position.getRow() - 1,
                     position.getColumn() + 2);
 
-        if (getBoard().positionExists(p) && canMove(p )) {
+        if (getBoard().positionExists(p) && canMove(p)) {
             matrix[p.getRow()][p.getColumn()] = true;
         }
 
         p.setValues(position.getRow() - 2,
                     position.getColumn() + 1);
 
-        if (getBoard().positionExists(p) && canMove(p )) {
+        if (getBoard().positionExists(p) && canMove(p)) {
             matrix[p.getRow()][p.getColumn()] = true;
         }
 

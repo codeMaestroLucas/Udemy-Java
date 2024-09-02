@@ -1,6 +1,5 @@
 package l_chessProject.project.models.entities.chess;
 
-
 import java.lang.IllegalStateException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,7 @@ public class ChessMatch {
         int rows = this.board.getRows();
         int cols = this.board.getCols();
 
-        ChessPiece[][] matrix = new ChessPiece [rows][cols];
+        ChessPiece[][] matrix = new ChessPiece[rows][cols];
 
         for (int i = 0; i < rows; i++) {
             for(int j = 0 ; j < cols; j++) {
@@ -111,7 +110,7 @@ public class ChessMatch {
         placeNewPiece('g', 8, new Knight(board, Color.BLACK));
         placeNewPiece('h', 8, new Rook(board, Color.BLACK));
         placeNewPiece('a', 7, new Pawn(board, Color.BLACK, this));
-        placeNewPiece('b', 7, new Pawn(board, Color.WHITE, this));
+        placeNewPiece('b', 7, new Pawn(board, Color.BLACK, this));
         placeNewPiece('c', 7, new Pawn(board, Color.BLACK, this));
         placeNewPiece('d', 7, new Pawn(board, Color.BLACK, this));
         placeNewPiece('e', 7, new Pawn(board, Color.BLACK, this));
@@ -124,7 +123,9 @@ public class ChessMatch {
 
     private void validateTargetPosition(Position initialPos, Position targetPos) {
         if (!board.piece(initialPos).possibleMove(targetPos)) {
-            throw new ChessException("Inlvalid move. This piece cannot move to this position.");
+            throw new ChessException(
+                "Inlvalid move. This piece cannot move to this position."
+                );
         }
     }
 
@@ -138,7 +139,9 @@ public class ChessMatch {
         }
 
         if (!board.piece(pos).isThereAnyPossibleMove()) {
-            throw new ChessException("There's no possible moves for the chosen piece.");
+            throw new ChessException(
+                "There's no possible moves for the chosen piece."
+                );
         }
     }
 
@@ -264,7 +267,9 @@ public class ChessMatch {
 
     public ChessPiece replacePromotedPiece(String type) {
         if (this.promoted == null ) {
-            throw new IllegalArgumentException("There's no piece to be promoted.");
+            throw new IllegalArgumentException(
+                "There's no piece to be promoted."
+                );
         }
 
         if (!type.equals("B") && !type.equals("N") &&
@@ -301,7 +306,9 @@ public class ChessMatch {
 
         if (testCheck(currentPlayer)) {
             undoMove(initial, target, capturedPiece);
-            throw new ChessException("U can't put yourself in a check position.");
+            throw new ChessException(
+                "U can't put yourself in a check position."
+                );
         }
 
         ChessPiece movedPiece = (ChessPiece) board.piece(target);

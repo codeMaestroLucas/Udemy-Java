@@ -64,7 +64,8 @@ public class Board {
     public Boolean thereIsAPiece(Position pos) {
         if (!positionExists(pos.getRow(), pos.getColumn())) {
             throw new BoardGameExpection(
-               STR."Position (\{pos.getRow()}, \{pos.getColumn()}) does't exist on the board.");
+               STR."Position (\{pos.getRow()}, \{pos.getColumn()})" +
+                                "does't exist on the board.");
         }
 
         return piece(pos) != null;
@@ -74,7 +75,8 @@ public class Board {
     public Piece removePiece(Position pos) {
         if (!positionExists(pos.getRow(), pos.getColumn())) {
             throw new BoardGameExpection(
-                STR."Position (\{pos.getRow()}, \{pos.getColumn()}) does't exist on the board.");
+                STR."Position (\{pos.getRow()}, \{pos.getColumn()})" +
+                                    "does't exist on the board.");
         }
 
         if (piece(pos) == null) {return null;}

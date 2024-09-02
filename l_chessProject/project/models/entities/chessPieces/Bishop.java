@@ -7,7 +7,6 @@ import l_chessProject.project.models.enums.Color;
 
 
 public class Bishop extends ChessPiece {
-
     
     public Bishop(Board board, Color color) {
         super(board, color);
@@ -25,15 +24,15 @@ public class Bishop extends ChessPiece {
         boolean[][] matrix = new boolean[getBoard().getRows()]
                                         [getBoard().getCols()];
         
-        movesUpLeft(matrix);
-        movesDownRight(matrix);
-        movesDownLeft(matrix);
-        movesUpRight(matrix);
+        movesDiagUpLeft(matrix);
+        movesDiagDownRight(matrix);
+        movesDiagDownLeft(matrix);
+        movesDiagUpRight(matrix);
 
         return matrix;
     }
 
-    private boolean[][] movesUpLeft(boolean[][] matrix) {
+    private boolean[][] movesDiagUpLeft(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() - 1,
                     position.getColumn() - 1);
@@ -50,7 +49,7 @@ public class Bishop extends ChessPiece {
         return matrix;
     }
 
-    private boolean[][] movesDownRight(boolean[][] matrix) {
+    private boolean[][] movesDiagDownRight(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() + 1,
                     position.getColumn() + 1);
@@ -67,7 +66,7 @@ public class Bishop extends ChessPiece {
         return matrix;
     }
     
-    private boolean[][] movesDownLeft(boolean[][] matrix) {
+    private boolean[][] movesDiagDownLeft(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() + 1,
                     position.getColumn() - 1);
@@ -84,7 +83,7 @@ public class Bishop extends ChessPiece {
         return matrix;
     }
     
-    private boolean[][] movesUpRight(boolean[][] matrix) {
+    private boolean[][] movesDiagUpRight(boolean[][] matrix) {
         Position p = new Position(0, 0);
         p.setValues(position.getRow() - 1,
                     position.getColumn() + 1);

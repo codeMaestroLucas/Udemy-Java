@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
-
 import l_chessProject.project.models.entities.boardGame.BoardGameExpection;
 import l_chessProject.project.models.entities.chess.ChessMatch;
 import l_chessProject.project.models.entities.chess.ChessPiece;
@@ -47,8 +46,11 @@ public class Main {
                                        "[B]/[N]/[R]/[Q]\n-> ");
                     
                     String type = sc.next().trim().toUpperCase();
-                    while (!type.equals("B") && !type.equals("N") &&
-                    !type.equals("R") && !type.equals("Q")) {
+                    while (!type.equals("B") &&
+                           !type.equals("N") &&
+                           !type.equals("R") &&
+                           !type.equals("Q"))
+                    {
                         System.out.print("\033[31mInvalid type.\033[m");
                         System.out.print("Enter the piece for promotion " +
                             "[B]/[N]/[R]/[Q]\n-> ");
@@ -58,7 +60,6 @@ public class Main {
                     m.replacePromotedPiece(type);
                 }
 
-                    
             } catch (BoardGameExpection e) {
                 UI.raiseException(sc, e);
             } catch (InputMismatchException e) {
@@ -67,7 +68,6 @@ public class Main {
 
         }
         
-        // sc.close();
+        sc.close();
     }
 }
-

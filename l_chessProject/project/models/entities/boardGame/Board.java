@@ -65,7 +65,7 @@ public class Board {
         if (!positionExists(pos.getRow(), pos.getColumn())) {
             throw new BoardGameExpection(
                STR."Position (\{pos.getRow()}, \{pos.getColumn()})" +
-                                "does't exist on the board.");
+                                    "does't exist on the board.");
         }
 
         return piece(pos) != null;
